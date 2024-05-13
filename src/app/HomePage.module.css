@@ -1,207 +1,179 @@
+/* Estilos da página inicial */
 .homepage {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height:100vh;
-    background-image: url('../../public/img/fundos/glowing-spaceship-orbits-sphere-deep-space-generated-by-ai\ 1.png');
-    background-size: cover;
-    background-position: center;
-    padding-top: 2%;
-  }
-  
-  .titleLogo{
-    font-family: "Montserrat";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.5px;
-    letter-spacing: 0.155em;
-    text-align: center;
-    color: #FFFFFF;
-  }
-  
-  .content {
-    border-radius: 20px 20px 20px 20px ;
-    display: inline;
-  }
-  
-  .companyLogo {
-    max-width: 200px;
-    height: auto;
-    margin-bottom: 20px;
-  }
-  
-  .mainContent {
-    box-sizing: content-box;
-    display: flex;
-    max-width: 800px;
-    max-height: 400px;
-  }
-  
-  .leftColumn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    max-width: 400px;
-    max-height: 400px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../../public/img/fundos/glowing-spaceship-orbits-sphere-deep-space-generated-by-ai 1.png');
+  background-size: cover;
+  background-position: center;
+  padding-top: 2%;
+}
 
-  .leftColumn .rocketImage{
-    max-width:400px;
-    display:"flex";
-    border-radius: "20px 0px 0px 20px"
-  }
- 
-  .rightColumn {
-    border-radius: 0px 20px 20px 0px ;
-    flex: 1;
-    display: flex; /* Adicione isso para tornar os itens flexíveis */
-    flex-direction: column; /* Adicione isso para que os itens sejam empilhados verticalmente */
-    align-items: center; /* Alinhe os itens horizontalmente no centro */
-    justify-content: center; /* Alinhe os itens verticalmente no centro */
-    max-width: 400px;
-    max-height: 400px;
-    padding: 5%;
-    background-color:#000000B2; 
-  }
-  
-  
-  .title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    text-align: center;
-    color: white;
-    word-break: break-word;;
-    padding: 2%;
-  }
-  
-  .boxSeach{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px; 
-  }
+.titleLogo {
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.5px;
+  letter-spacing: 0.155em;
+  text-align: center;
+  color: #ffffff;
+}
 
-  .boxSeach input button{
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 2%;
-  } 
+.content {
+  border-radius: 20px;
+  display: inline;
+}
+
+.companyLogo {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.mainContent {
+  box-sizing: content-box;
+  display: flex;
+  max-width: 800px;
+  max-height: 400px;
+}
+
+.leftColumn,
+.rightColumn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  max-height: 400px;
+}
 
 
-  .searchInput {
-    width: 80%;
-    height: 40px;
-    gap: 0px;
-    border-radius: 5px;
-    padding-left: 2%;
-    text-align: center;
-  }
-  
-  
-  .searchButton {
-    width: 80%;
-    height: 40px;
-    background: #DE1212;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1.5%;
-  }
+.leftColumn .rocketImage {
+  max-width: 400px;
+  display: flex;
+  border-radius: 20px 0px 0px 20px;
+}
 
+.rightColumn {
+  border-radius: 0px 20px 20px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  background-color: #000000b2;
+}
 
-    /* Botão desabilitado */
-  .searchButton:disabled {
-    width: 80%;
-    height: 40px;
-    background: #DE1212;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: not-allowed; /* Altere o cursor para not-allowed quando desabilitado */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1.5%;
-    opacity: 0.6; /* Reduza a opacidade do botão desabilitado */
-  }
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  word-break: break-word;;
+  padding: 2%;
+}
 
-  .newSearch {
-    padding: 10px;
-    height: 40px;
-    background: #FFFFFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1.5%;
-  }
+.boxSeach{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; 
+}
 
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background: #f0f0f0;
-    padding: 20px 20px;
-    margin-bottom: 0;
-  }
-  
-  .footer p {
+.searchInput {
+  width: 80%;
+  height: 40px;
+  gap: 0px;
+  border-radius: 5px;
+  padding-left: 2%;
+  text-align: center;
+}
 
-    font-size: 14px;
-  }
+.searchButton {
+  width: 80%;
+  height: 40px;
+  background: #DE1212;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5%;
+}
 
+/* Botão desabilitado */
+.searchButton:disabled {
+  width: 80%;
+  height: 40px;
+  background: #DE1212;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5%;
+  opacity: 0.6;
+}
 
-  
-  .footer-logo {
-    width: 100px;
-    height: auto;
-  }
-  
-  .boxIconSearch {
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    align-content: center;
-    color: #ffffff;
-  }
+.newSearch {
+  padding: 10px;
+  height: 40px;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5%;
+}
 
-  .boxIconSearch label {
-    color: #ffffff;
-    margin: 5px;
-    font-size: 14px;
-  }
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: #f0f0f0;
+  padding: 20px 20px;
+  margin-bottom: 0;
+}
 
-  
-  .iconlist {
-    color: "#FFFFFF";
-  
-  }
+.footer p {
+  font-size: 14px;
+}
+
+.boxIconSearch {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  align-content: center;
+  color: #ffffff;
+}
+
+.boxIconSearch label {
+  color: #ffffff;
+  margin: 5px;
+  font-size: 14px;
+}
 
 @media screen and (max-width: 768px) {
   .mainContent {
-    flex-direction: column; /* Altera a direção para empilhar verticalmente */
-    align-items: center; /* Alinha os itens horizontalmente no centro */
+    flex-direction: column;
+    align-items: center;
   }
 
   .leftColumn,
   .rightColumn {
-    width: 100%; /* Define a largura para ocupar toda a largura disponível */
+    width: 100%;
   }
 
-  
   .footer {
-
     bottom: 0;
     left: 0;
     width: 100%;
@@ -209,44 +181,34 @@
     padding: 20px;
     text-align: center;
   }
-  
 }
 
+/* Estilos adicionais da segunda pagina  */
 
-/* seach painel*/
-  
-.colorew{
-background-color: black;
+.colorew {
+  background-color: black;
 }
 
-/* grid */
+/* Grid */
 .gridcontainer {
   margin-top: 20px;
   width: 600px;
   height: 400px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 20px;
   padding: 16px;
   justify-content: center;
   align-content: center;
-  
 }
-
-.gridcontainer div {
-  
-}
-
 
 .gridcontainer p {
   font-family: Montserrat;
   font-size: 14px;
   line-height: 17.07px;
   text-align: left;
-
 }
 
-/* parte de cima */
-
+/* Parte superior */
 .verticaltopleft {
   display: flex;
   width: 50%;
@@ -257,7 +219,6 @@ background-color: black;
   display: flex;
   flex-direction: column;
   width: 50%;
-  
 }
 
 .InfosTitleRigth {
@@ -266,7 +227,7 @@ background-color: black;
   align-items: center;
 }
 
-.InfosTitleRigth h4{
+.InfosTitleRigth h4 {
   display: flex;
   font-weight: bold;
   color: #000000;
@@ -281,7 +242,7 @@ background-color: black;
   margin-left: 5px;
 }
 
-.planetTitle{
+.planetTitle {
   font-family: Montserrat;
   font-size: 18px;
   font-weight: bolder;
@@ -290,48 +251,42 @@ background-color: black;
   text-transform: uppercase;
 }
 
-
-/* parte de baixo*/
-
+/* Parte inferior */
 .horizontalbottomleft {
-  height:50%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   padding: 9px 24px 24px 24px;
   border-radius: 20px;
-  background-color:#F1F1F1;
-  
+  background-color: #f1f1f1;
 }
 
 .horizontalbottomright {
   margin-top: 6px;
-  height:50%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   padding: 9px 24px 24px 24px;
   border-radius: 20px;
-  background-color:#F1F1F1;
+  background-color: #f1f1f1;
 }
 
 .horizontalbottomright p {
-display: flex;
-align-items: center;
-align-content: center;
-justify-content: center;
+  display: flex;
+  padding: 5px;
 }
 
-.divTitle{
-  display:flex;
+.divTitle {
+  display: flex;
   border-bottom: 1px solid #000000;
   padding: 2px 4px 4px 2px;
 }
 
-.divTitle h4{
+.divTitle h4 {
   font-size: 14px;
   font-weight: bold;
   padding-left: 6px;
 }
-
 
 .divTitle p {
   font-size: 12px;
@@ -339,22 +294,19 @@ justify-content: center;
 
 .material-icons-outlined {
   color: black !important;
-  
 }
 
-
-
-
-.container{
+.container {
   width: 600px;
   height: 400px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 20px;
   padding: 16px;
   justify-content: center;
   align-content: center;
 }
-.content{
+
+.content {
   justify-content: center;
   align-content: center;
 }
@@ -366,10 +318,48 @@ justify-content: center;
   font-size: 18px;
 }
 
-.message h2{
+.message h2 {
   justify-content: center;
   align-content: center;
   text-align: center;
   font-weight: bold;
+}
 
+/* Estilos responsivos da segunda pagina */
+
+@media screen and (max-width: 768px) {
+  /* Ajuste as margens e larguras para dispositivos móveis */
+  .gridcontainer {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+  }
+
+  .verticaltopleft,
+  .verticaltopright {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .horizontalbottomleft,
+  .horizontalbottomright {
+    width: 100%;
+    height: auto;
+    padding: 9px 16px 16px 16px;
+  }
+
+  .divTitle h4 {
+    font-size: 14px;
+  }
+
+  .divTitle p {
+    font-size: 12px;
+  }
+
+  .message {
+    font-size: 16px;
+  }
 }
