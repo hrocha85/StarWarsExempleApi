@@ -116,6 +116,36 @@
     margin-top: 1.5%;
   }
 
+
+    /* Botão desabilitado */
+  .searchButton:disabled {
+    width: 80%;
+    height: 40px;
+    background: #DE1212;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed; /* Altere o cursor para not-allowed quando desabilitado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5%;
+    opacity: 0.6; /* Reduza a opacidade do botão desabilitado */
+  }
+
+  .newSearch {
+    padding: 10px;
+    height: 40px;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5%;
+  }
+
   .footer {
     display: flex;
     justify-content: center;
@@ -143,20 +173,16 @@
     align-items: center; 
     justify-content: center;
     align-content: center;
-  
-  }
-
-  .boxIconSearch p {
     color: #ffffff;
-    font-size: 12px;
   }
 
-  .boxIconSearch span {
-    margin-left: 4%;
+  .boxIconSearch label {
+    color: #ffffff;
+    margin: 5px;
     font-size: 14px;
-    color: #ffffff;
   }
 
+  
   .iconlist {
     color: "#FFFFFF";
   
@@ -195,6 +221,7 @@ background-color: black;
 
 /* grid */
 .gridcontainer {
+  margin-top: 20px;
   width: 600px;
   height: 400px;
   background-color: #FFFFFF;
@@ -313,4 +340,36 @@ justify-content: center;
 .material-icons-outlined {
   color: black !important;
   
+}
+
+
+
+
+.container{
+  width: 600px;
+  height: 400px;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 16px;
+  justify-content: center;
+  align-content: center;
+}
+.content{
+  justify-content: center;
+  align-content: center;
+}
+
+.message {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+.message h2{
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-weight: bold;
+
 }
