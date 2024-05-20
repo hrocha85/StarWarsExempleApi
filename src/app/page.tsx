@@ -1,6 +1,6 @@
 'use client' 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from './HomePage.module.css';
 import logoBranco from '../../public/img/logos/versao_1_branco.png';
@@ -11,7 +11,18 @@ import filmIcon from '../../public/img/icons/Group_3568.svg';
 import planetMock from '../../public/img/planetas/kashyyyk 1.png';
 import Api from '../../src/app/axiosConfig';
 
+//Imagens Planets 
 
+import Naboo from "../../public/img/planetas/planeta_0001_naboo.png";
+import Mustafar from "../../public/img/planetas/planeta_0002_mustafar.png";
+import Kashyyyk from "../../public/img/planetas/planeta_0003_kashyyyk.png";
+import Noth from "../../public/img/planetas/planeta_0004_hoth.png";
+import Endor from "../../public/img/planetas/planeta_0005_endor.png";
+import Dagobah from "../../public/img/planetas/planeta_0006_dagobah.png";
+import Coruscant from "../../public/img/planetas/planeta_0007_coruscant.png";
+import Bespin from "../../public/img/planetas/planeta_0008_bespin.png";
+import Alderaan from "../../public/img/planetas/planeta_0009_alderaan.png";
+import Tatooine from "../../public/img/planetas/planeta_0000_tatooine.png";
 
 
 
@@ -20,13 +31,73 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [selectedOption, setSelectedOption] = useState('');
   const [data, setData] = useState([]);
-  const [residents, setResidents] = useState("");
-  const [films, setFilms] = useState("");
+  const [dataInformation, setDataInformation] = useState();
 
+
+  const [residents, setResidents] = useState<string[]>([]);
+  const [films, setFilms] = useState<string[]>([]);
   const [editing, setEditing] = useState(false);
   const [planetName, setPlanetName] = useState("");
 
-  const handleEditClick = (name) => {
+  const [loading, setLoading] = useState(true);
+  const [allData, setAllData] = useState<object[]>([]);
+  
+  const planetImages: any = {
+    Naboo,
+    Mustafar,
+    Kashyyyk,
+    Noth,
+    Endor,
+    Dagobah,
+    Coruscant,
+    Bespin,
+    Alderaan,
+    Tatooine
+};
+
+
+function getPlanetImage(planetName:any) {
+  const image = planetImages[planetName];
+  if (!image) {
+      console.error(`imagem não entencontrada: ${planetName}`);
+      return null;
+  }else {
+    console.log("entrou em imagem")
+    return image;   
+  }
+ 
+}
+
+
+  useEffect(() => {
+    // Função para buscar dados da API All planets
+    async function fetchData() {
+      try {
+        const response = await Api.get(`/planets`);
+        console.log("Objet",response)
+        // const result = await response;
+        setAllData(response.data.results);
+        setLoading(false);
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+        setLoading(false);
+      }
+    }
+
+    // Chama a função para buscar dados
+    fetchData();
+  }, []); // 
+
+
+  function encontrarObjetoPorInformacao(rede:any, informacao:any) {
+  
+    return rede.find((objeto: { [s: string]: unknown; } | ArrayLike<unknown>) => {
+        return Object.values(objeto).some(valor => valor?.toString().toLowerCase().includes(informacao.toLowerCase()));
+    });
+
+}
+  
+  const handleEditClick = () => {
     setEditing(true);
   
   };
@@ -37,49 +108,49 @@ const Home = () => {
   };
   
   // Função para lidar com a mudança na entrada de pesquisa
-  const handleInputChange = (e) => {
+  const handleInputChange = (e:any) => {
     setSearch(e.target.value);
   };
 
   // Função para lidar com a mudança na opção selecionada
-  const handleOptionChange = (e) => {
+  const handleOptionChange = (e:any) => {
     setSelectedOption(e.target.value);
   };
 
-  // Função para realizar a pesquisa
-  const getSearch = async () => {
-    try {
-      const response = await Api.get(`/${selectedOption}/?search=${search}`);
-      setData(response.data.results);
-      setShowPlanet(true);
-      console.log(`data`,response.data.results)
-      // Aguarde a conclusão das chamadas assíncronas para residentes e filmes
-      await Promise.all([
-        getResidents(response.data.results[0].residents[0]),
-        getFilms(response.data.results[0].films[0])
-      ]);
-    } catch (error) {
-      console.error('Erro ao obter dados:', error);
-    }
+  const getInformation = async () => {
+    const take = encontrarObjetoPorInformacao(allData, search);
+    setDataInformation(take);
+    setShowPlanet(true);
+  
+    await getResidents(take.residents);
+    await getFilms(take.films);
   };
 
-  // Função para obter residentes
-  const getResidents = async (url) => {
-    const path = url.replace('https://swapi.dev/api/', '');
+  const getResidents = async (urls:any) => {
     try {
-      const response = await Api.get(path);
-      setResidents(response.data.name);
+      const promises = urls.map(async (url:any) => {
+        const path = url.replace('https://swapi.dev/api/', '');
+        const response = await Api.get(path);
+        return response.data.name;
+      });
+
+      const names = await Promise.all(promises);
+      setResidents((prevResidents) => [...prevResidents, ...names]);
     } catch (error) {
       console.error('Erro ao obter dados dos residentes:', error);
     }
   };
 
-  // Função para obter filmes
-  const getFilms = async (url) => {
-    const path = url.replace('https://swapi.dev/api/', '');
+  const getFilms = async (urls:any) => {
     try {
-      const response = await Api.get(path);
-      setFilms(response.data.title);
+      const promises = urls.map(async (url:any) => {
+        const path = url.replace('https://swapi.dev/api/', '');
+        const response = await Api.get(path);
+        return response.data.title;
+      });
+
+      const titles = await Promise.all(promises);
+      setFilms((prevFilms) => [...prevFilms, ...titles]);
     } catch (error) {
       console.error('Erro ao obter dados dos filmes:', error);
     }
@@ -100,15 +171,16 @@ const Home = () => {
   };
 
  // Função para renderizar a tela de resposta da pesquisa
-const renderSearchResponse = (res) => {
-  if (res == "") {
+const renderSearchResponse = (info:any) => {
+  if (info == undefined) {
     return renderErrorScreen();
   } else {
-    return res.map((info, index) => (
-      <div key={index} className={styles.gridcontainer}>
+    return (
+      <div key={1} className={styles.gridcontainer}>
         <div style={{ display: "flex", width: "100%", justifyContent: "center", marginBottom: 24 }}>
           <div className={styles.verticaltopleft}>
-            <Image width={74} src={planetMock} alt="PLANET" style={{ marginLeft: 10, marginRight: 10 }} />
+        
+            <Image width={74} src={getPlanetImage(info.name)} alt="PLANET" style={{ marginLeft: 10, marginRight: 10 }} />
             <div>
               <p>Planet:</p>
               {editing ? (
@@ -123,7 +195,7 @@ const renderSearchResponse = (res) => {
               {editing ? (
                 <button onClick={handleSaveClick}>Salvar</button>
               ) : (
-                <button onClick={()=>handleEditClick(info.name)}>Editar</button>
+                <button onClick={()=>handleEditClick()}>Editar</button>
               )}
             </div>
           </div>
@@ -148,7 +220,8 @@ const renderSearchResponse = (res) => {
                   <span className="material-symbols-outlined">person</span>
                   <h4>Residents: </h4>
                 </div>
-                <p> {residents !== "" ? residents : null }</p>
+                <p> {residents !== undefined ? residents?.join(", "): null }</p>
+             
               </div>
             </div>
           </div>
@@ -158,11 +231,11 @@ const renderSearchResponse = (res) => {
               <Image src={filmIcon} alt="PLANET" />
               <h4>Filmes:</h4>
             </div>
-            <p> {films !== "" ? films : null }</p>
+            <p> {films !== undefined ? films?.join(", "): null }</p>
           </div>
         </div>
       </div>
-    ));
+    );
   }
 };
 
@@ -173,7 +246,7 @@ const renderDefaultScreen = () => {
       <div className={styles.mainContent}>
         <div className={styles.leftColumn}>
           <Image width={400} src={imgFogrete} alt="Imagem 1" style={{maxWidth:"100%",display:'flex', position:"absolute",paddingRight:"200px", zIndex:1}} />
-          <Image src={imgFundo} alt="Imagem 2"style={{maxWidth:"100%",display:"flex", borderRadius: "10px 0px 0px 20px"}} className={styles.rocketImage} />
+          <Image src={imgFundo} alt="Imagem 2" className={styles.rocketImage} />
         </div>
         <div className={styles.rightColumn}>
           <h2 className={styles.title}>Discover all the information about Planets of the Star Wars Saga</h2>
@@ -184,7 +257,7 @@ const renderDefaultScreen = () => {
                 className={styles.searchInput}
                 onChange={handleInputChange}
               />
-            <button disabled={selectedOption == "" ||  search == ""} onClick={()=> getSearch()} className={styles.searchButton}>
+            <button disabled={selectedOption == "" ||  search == ""} onClick={()=> { getInformation()} } className={styles.searchButton}>
             <span className="material-symbols-outlined">search</span>Search
             </button>
           </div>
@@ -215,7 +288,7 @@ const renderDefaultScreen = () => {
                   checked={selectedOption === 'people'}
                   onChange={handleOptionChange}
                 />
-                <label htmlFor="option2">Population</label>
+                <label htmlFor="option2">people</label>
               </div>
           </div>
         </div>
@@ -223,6 +296,10 @@ const renderDefaultScreen = () => {
     </div>
   );
 };
+
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <div className={styles.homepage}>
@@ -236,9 +313,9 @@ const renderDefaultScreen = () => {
           <span className="material-symbols-outlined">search</span> Nova pesquisa
         </button>
       ) : <></>}
-      
-      {showPlanet ? renderSearchResponse(data) : renderDefaultScreen()}
-
+      <div className={styles.content}>
+      {showPlanet ? renderSearchResponse(dataInformation) : renderDefaultScreen()}
+      </div>
       <div className={styles.footer}>
         <p>CNPJ: STARUARS LTDA | CNPJ: 77.777.777/0007-07 | 2023 | Todos os direitos reservados</p>
         <Image src={logoPreto} alt="Logo da Empresa" className={styles.footerLogo} style={{paddingLeft: 20}}/>
