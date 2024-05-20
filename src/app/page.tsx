@@ -288,7 +288,7 @@ const renderDefaultScreen = () => {
                   checked={selectedOption === 'people'}
                   onChange={handleOptionChange}
                 />
-                <label htmlFor="option2">people</label>
+                <label htmlFor="option2">Population</label>
               </div>
           </div>
         </div>
@@ -309,7 +309,10 @@ const renderDefaultScreen = () => {
       </div>
 
       {showPlanet ? (
-        <button onClick={() => setShowPlanet(false)} className={styles.newSearch}>
+        <button onClick={() => {setShowPlanet(false)
+          setFilms([])
+            setResidents([])}
+        } className={styles.newSearch}>
           <span className="material-symbols-outlined">search</span> Nova pesquisa
         </button>
       ) : <></>}
