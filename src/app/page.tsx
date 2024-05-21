@@ -8,7 +8,6 @@ import logoPreto from '../../public/img/logos/versao_2_preto.png';
 import imgFogrete from '../../public/img/fundos/spaceship5 1.png';
 import imgFundo from '../../public/img/fundos/creative-mars-collage 1.png';
 import filmIcon from '../../public/img/icons/Group_3568.svg';
-import planetMock from '../../public/img/planetas/kashyyyk 1.png';
 import Api from '../../src/app/axiosConfig';
 
 //Imagens Planets 
